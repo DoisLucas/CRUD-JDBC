@@ -62,7 +62,7 @@ public class Main {
             case 6:
                 listar_pessoa();
             case 7:
-            //excluir_pessoa();
+                excluir_pessoa();
             case 8:
             //aterar_pessoa();
             case 9:
@@ -125,7 +125,7 @@ public class Main {
     public void excluir_carro() {
 
         CarroDAO cdao = new CarroDAO();
-
+        
         System.out.print("\nDigite o número do chassi do carro para excluir: ");
         int numero_chassi = getScanner().nextInt();
 
@@ -207,6 +207,16 @@ public class Main {
             System.out.println("RG: " + p.getRg());
             System.out.println("Idade: " + p.getIdade() + "\n");
         }
+        menu();
+    }
+    
+    public void excluir_pessoa(){
+        
+        PessoaDAO pdao = new PessoaDAO();      
+        System.out.print("\nDigite o CPF da pessoa para remove-lá: ");
+        
+        int cpf = getScanner().nextInt();   
+        pdao.delete_pessoa(cpf);
         menu();
     }
 

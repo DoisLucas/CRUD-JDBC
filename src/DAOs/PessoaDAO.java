@@ -96,7 +96,22 @@ public class PessoaDAO {
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
             return null;
-        }        
+        }
+    }
+
+    public void delete_pessoa(int cpf) {
+
+        String sql = "DELETE FROM pessoa WHERE cpf = ?";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo cpf da pessoa que recebemos no parametro.
+            stmt.setInt(1, cpf);
+            stmt.executeUpdate();
+            System.out.println("\nPessoa Deletada do Banco de Dados\n");
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex);
+        }
     }
 
 }
