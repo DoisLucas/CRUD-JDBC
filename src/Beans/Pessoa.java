@@ -8,18 +8,17 @@ package Beans;
 import java.util.ArrayList;
 
 //Classe padrão mensss, construtor, get e setters, toString... Wolfado plus
-
 /**
  *
  * @author plocabral
  */
 public class Pessoa {
-    
+
     int cpf;
     int rg;
     int idade;
     String nome;
-    
+
     ArrayList<Carro> meus_carros = new ArrayList<>();
 
     public Pessoa() {
@@ -77,5 +76,4 @@ public class Pessoa {
         return "Pessoa{" + "cpf=" + cpf + ", rg=" + rg + ", idade=" + idade + ", nome=" + nome + ", meus_carros=" + meus_carros + '}';
     }
 
-    
 }

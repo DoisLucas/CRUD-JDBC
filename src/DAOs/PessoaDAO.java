@@ -114,4 +114,46 @@ public class PessoaDAO {
         }
     }
 
+    public Pessoa achar_pessoa(int cpf) {
+
+        Pessoa p = new Pessoa();
+        String sql = "SELECT * FROM pessoa WHERE cpf = ?";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo cpf da pessoa que recebemos no parametro.
+            stmt.setInt(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                //Chamo o Setters padrão de pessoa, e no parametro coloco o rs.getTipo("nome_da_coluna_igual_do_banco");              
+                p.setCpf(rs.getInt("cpf"));
+                p.setRg(rs.getInt("rg"));
+                p.setIdade(rs.getInt("idade"));
+                p.setNome(rs.getString("nome"));
+            }
+            return p;
+
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex);
+            return null;
+        }
+    }
+
+    public void alterar_pessoa(int cpf, String nome, int idade) {
+
+        String sql = "UPDATE pessoa SET nome = ?, idade = ? WHERE cpf = ?";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);
+            stmt.setInt(2, idade);
+            stmt.setInt(3, cpf);
+            stmt.executeUpdate();
+            System.out.println("\nPessoa Editada no Banco de Dados\n");
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex);
+        }
+    }
+
 }
