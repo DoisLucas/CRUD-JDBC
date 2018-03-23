@@ -11,8 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -125,6 +123,7 @@ public class CarroDAO {
 
     }
 
+    //Metodo que retorna o carro com o chassi passado pelo parametro.
     public Carro achar_carro(int chassi) {
 
         Carro c = new Carro();
@@ -152,12 +151,12 @@ public class CarroDAO {
         }
     }
 
+    //Metodo alterar carro, onde pega as novas informações do parametro e faz o UPDATE na tabela pelo chassi do carro
     public void alterar_carro(int chassi, String nome, String cor, int ano, int potencia) {
 
         String sql = "UPDATE carro SET nome = ?, cor = ?, ano = ?, potencia = ? WHERE numero_chassi = ?";
 
         try {
-
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, cor);
@@ -166,11 +165,9 @@ public class CarroDAO {
             stmt.setInt(5, chassi);
             stmt.executeUpdate();
             System.out.println("\nCarro Editado no Banco de Dados\n");
-
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
         }
-
     }
 
 }

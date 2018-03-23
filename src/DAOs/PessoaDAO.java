@@ -13,10 +13,10 @@ import java.sql.Connection;
  */
 public class PessoaDAO {
     
-      /*
+    /*
     * A Classe DAO vai ser responsavel de fazer todas as operações CRUD desse objeto no banco,
     * O recomendado e ter um Classe DAO pra cada entidade do seu projeto, CarroDAO, PessoaDAO, etc...
-     */
+    */
     private Connection con = null;
 
     //Sempre que instacia ele vai pegar a conexao com banco, da classe que criamos BancoConnection

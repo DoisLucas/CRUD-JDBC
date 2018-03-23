@@ -10,17 +10,17 @@ import java.sql.SQLException;
  */
 public class BancoConnection {
 
-    //Classe responsavel de abrir e fechar conexão do banco, WOLFADO PLUS!
+    //Classe responsavel de abrir e fechar conexão do banco.
     private static final String DRIVER = "org.postgresql.Driver";
 
     //ENDERECO:PORTA/NOME_BANCO
     private static final String URL = "jdbc:postgresql://localhost:5432/rentcar";
 
-    //Usuario e senha do banco que você define quando cria o banco lá
+    //Usuario e senha do banco que você define quando cria o banco.
     private static final String USER = "postgres";
     private static final String PASS = "123456789";
 
-    //Abre conexão com o banco
+    //Abre conexão com o banco.
     public static Connection getConnection() {
         try {
             Class.forName(DRIVER);
@@ -31,7 +31,7 @@ public class BancoConnection {
         }
     }
 
-    //Fecha conexão com o banco
+    //Fecha conexão com o banco.
     public static void closeConnection(Connection con) {
         if (con != null) {
             try {

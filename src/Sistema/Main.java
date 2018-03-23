@@ -94,8 +94,6 @@ public class Main {
         //Instanciei um carro, padrão...
         Carro c = new Carro(chassi, nome, cor, ano, potencia);
 
-        //Adicionando esse carro na lista 'todos_carros' que ta no Singleton
-        //Singleton.getInstance().todos_carros.add(c);
         //Instanciando a classe DAO do Carro, chamando o metodo add_carro e passando como parametro o carro
         //criado acima
         CarroDAO cdao = new CarroDAO();
@@ -165,6 +163,7 @@ public class Main {
         System.out.print("Potencia (CV): ");
         int potencia = getScanner().nextInt();
 
+        //Passando como parametro as informações e o numero do chassi do carro que foi digitado e posteriormente encontrado
         cdao.alterar_carro(c.getNumero_chassi(), nome, cor, ano, potencia);
         menu();
     }

@@ -5,7 +5,8 @@
  */
 package Beans;
 
-//Classe padrão mensss, construtor, get e setters, toString... Wolfado plus
+//Classe normal, construtor, get e setters, toString.
+
 /**
  *
  * @author plocabral
