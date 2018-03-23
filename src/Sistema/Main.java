@@ -64,7 +64,7 @@ public class Main {
             case 7:
                 excluir_pessoa();
             case 8:
-            //aterar_pessoa();
+                alterar_pessoa();
             case 9:
             //realizar_venda();
             case 10:
@@ -76,7 +76,6 @@ public class Main {
             default:
                 System.out.println("Digite uma opção valida!");
                 menu();
-
         }
     }
 
@@ -125,7 +124,7 @@ public class Main {
     public void excluir_carro() {
 
         CarroDAO cdao = new CarroDAO();
-        
+
         System.out.print("\nDigite o número do chassi do carro para excluir: ");
         int numero_chassi = getScanner().nextInt();
 
@@ -136,11 +135,10 @@ public class Main {
     }
 
     public void alterar_carro() {
-        
+
         //Tem varias forma de fazer essa alteração, escolhi encontrar o carro  chamando o metodo achar_carro da classe DAO, 
         //mostrar ele, e dar a liberdade de alterar todas as informações, em seguida passando essas novas informaçoes
         //pro metodos altera_carro da classe CarroDAO
-
         CarroDAO cdao = new CarroDAO();
 
         System.out.print("\nDigite o número do chassi do carro para alterar: ");
@@ -170,9 +168,9 @@ public class Main {
         cdao.alterar_carro(c.getNumero_chassi(), nome, cor, ano, potencia);
         menu();
     }
-    
-    public void add_pessoa(){
-        
+
+    public void add_pessoa() {
+
         System.out.print("\nDigite o nome da Pessoa: ");
         String nome = getScanner().nextLine();
         System.out.print("Digite o CPF da Pessoa: ");
@@ -181,25 +179,25 @@ public class Main {
         int rg = getScanner().nextInt();
         System.out.print("Digite a idade da Pessoa: ");
         int idade = getScanner().nextInt();
-        
+
         //Instanciei um carro, normal...
         Pessoa p = new Pessoa(cpf, rg, idade, nome);
-        
-         //Instanciando a classe DAO do Carro, chamando o metodo add_carro e passando como parametro o carro
+
+        //Instanciando a classe DAO do Carro, chamando o metodo add_carro e passando como parametro o carro
         //criado acima
         PessoaDAO pdao = new PessoaDAO();
         pdao.add_pessoa(p);
-        
+
         menu();
     }
-    
-    public void listar_pessoa(){
-        
+
+    public void listar_pessoa() {
+
         //Instanciando a classe DAO de Pessoa
         PessoaDAO pdao = new PessoaDAO();
-        
+
         System.out.println("\t\n--- Todas as Pessoas ---\n");
-        
+
         //Passando um for no arraylist que o metodo mostrar_carros retorna
         for (Pessoa p : pdao.mostrar_pessoas()) {
             System.out.println("Nome: " + p.getNome());
@@ -209,14 +207,44 @@ public class Main {
         }
         menu();
     }
-    
-    public void excluir_pessoa(){
-        
-        PessoaDAO pdao = new PessoaDAO();      
+
+    public void excluir_pessoa() {
+
+        PessoaDAO pdao = new PessoaDAO();
         System.out.print("\nDigite o CPF da pessoa para remove-lá: ");
-        
-        int cpf = getScanner().nextInt();   
+
+        int cpf = getScanner().nextInt();
         pdao.delete_pessoa(cpf);
+        menu();
+    }
+
+    public void alterar_pessoa() {
+        //Tem varias forma de fazer essa alteração, escolhi encontrar a pessoa chamando o metodo achar_pessoa da classe DAO, 
+        //mostrar ela, e dar a liberdade de alterar todas as informações, em seguida passando essas novas informaçoes
+        //pro metodos altera_pessoa da classe PessoaDAO
+
+        PessoaDAO pdao = new PessoaDAO();
+
+        System.out.print("\nDigite o CPF da pessoa para alterar: ");
+        int cpf = getScanner().nextInt();
+
+        Pessoa p = pdao.achar_pessoa(cpf);
+
+        System.out.println("\nAlterando Informações da Pessoa: \n");
+        System.out.println("Nome: " + p.getNome());
+        System.out.println("CPF: " + p.getCpf());
+        System.out.println("RG: " + p.getCpf());
+        System.out.println("Idade: " + p.getIdade() + "\n");
+
+        System.out.println("Digite as novas informações: \n");
+
+        System.out.print("Nome: ");
+        String nome = getScanner().nextLine();
+        System.out.print("Idade: ");
+        int idade = getScanner().nextInt();
+
+        //Passando como parametro as informações e o numero do chassi do carro que foi digitado e posteriormente encontrado
+        pdao.alterar_pessoa(p.getCpf(), nome, idade);
         menu();
     }
 
