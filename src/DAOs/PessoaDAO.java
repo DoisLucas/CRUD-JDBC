@@ -79,7 +79,7 @@ public class PessoaDAO {
 
                 //Instacio um tipo pessoa pra criar a pessoa e adicionar no ArrayList que irei retornar.
                 Pessoa p = new Pessoa();
-                //Chamo o Setters padrão do carro, e no parametro coloco o rs.getTipo("nome_da_coluna_igual_do_banco");              
+                //Chamo o Setters padrão da pessoa, e no parametro coloco o rs.getTipo("nome_da_coluna_igual_do_banco");              
                 p.setCpf(rs.getInt("cpf"));
                 p.setRg(rs.getInt("rg"));
                 p.setIdade(rs.getInt("idade"));
