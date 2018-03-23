@@ -20,6 +20,9 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+    
+    //TODO: Adicionar atributo valor no Carro, e refatorar os metodos do Carro, Finalizar Venda
+    
     public static void main(String[] args) {
 
         Main m = new Main();
@@ -66,11 +69,11 @@ public class Main {
             case 8:
                 alterar_pessoa();
             case 9:
-            //realizar_venda();
+                //realizar_venda();
             case 10:
-            //mostrar_venda();
+                //mostrar_venda();
             case 11:
-            //listar_carro_pessoa();
+                //listar_carro_pessoa();
             case 12:
                 System.exit(0);
             default:

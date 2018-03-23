@@ -14,12 +14,10 @@ import java.util.ArrayList;
  */
 public class Pessoa {
 
-    int cpf;
-    int rg;
-    int idade;
-    String nome;
-
-    ArrayList<Carro> meus_carros = new ArrayList<>();
+    private int cpf;
+    private int rg;
+    private int idade;
+    private String nome;
 
     public Pessoa() {
     }
@@ -63,17 +61,9 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public ArrayList<Carro> getMeus_carros() {
-        return meus_carros;
-    }
-
-    public void setMeus_carros(ArrayList<Carro> meus_carros) {
-        this.meus_carros = meus_carros;
-    }
-
     @Override
     public String toString() {
-        return "Pessoa{" + "cpf=" + cpf + ", rg=" + rg + ", idade=" + idade + ", nome=" + nome + ", meus_carros=" + meus_carros + '}';
+        return "Pessoa{" + "cpf=" + cpf + ", rg=" + rg + ", idade=" + idade + ", nome=" + nome + '}';
     }
 
 }

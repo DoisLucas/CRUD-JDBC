@@ -12,11 +12,11 @@ package Beans;
  */
 public class Carro {
 
-    int numero_chassi;
-    String nome;
-    String cor;
-    int ano;
-    int potencia_cv;
+    private int numero_chassi;
+    private String nome;
+    private String cor;
+    private int ano;
+    private int potencia_cv;
 
     public Carro() {
     }
