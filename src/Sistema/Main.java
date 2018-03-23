@@ -60,7 +60,7 @@ public class Main {
             case 5:
                 add_pessoa();
             case 6:
-            //listar_pessoa();
+                listar_pessoa();
             case 7:
             //excluir_pessoa();
             case 8:
@@ -190,6 +190,23 @@ public class Main {
         PessoaDAO pdao = new PessoaDAO();
         pdao.add_pessoa(p);
         
+        menu();
+    }
+    
+    public void listar_pessoa(){
+        
+        //Instanciando a classe DAO de Pessoa
+        PessoaDAO pdao = new PessoaDAO();
+        
+        System.out.println("\t\n--- Todas as Pessoas ---\n");
+        
+        //Passando um for no arraylist que o metodo mostrar_carros retorna
+        for (Pessoa p : pdao.mostrar_pessoas()) {
+            System.out.println("Nome: " + p.getNome());
+            System.out.println("CPF: " + p.getCpf());
+            System.out.println("RG: " + p.getRg());
+            System.out.println("Idade: " + p.getIdade() + "\n");
+        }
         menu();
     }
 

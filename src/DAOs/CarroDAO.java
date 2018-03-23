@@ -103,8 +103,8 @@ public class CarroDAO {
 
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
-        }
-        return null;
+            return null;
+        }  
     }
 
     //Metodo que deleta o carro pelo numero do chassi passado pelo parametro.
