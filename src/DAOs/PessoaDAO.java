@@ -5,7 +5,10 @@
  */
 package DAOs;
 
+import Beans.Pessoa;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,6 +25,34 @@ public class PessoaDAO {
     //Sempre que instacia ele vai pegar a conexao com banco, da classe que criamos BancoConnection
     public PessoaDAO() {
         con = BancoConnection.getConnection();
+    }
+    
+    public void add_pessoa(Pessoa p) {
+        
+        String sql = "INSERT INTO pessoa (cpf, rg, idade, nome) VALUES (?, ?, ?, ?)";
+        
+        try {
+            //O preparedStatement serve pra preparar a query que criei acima, subistituindo os '?' pelos valores que eu quero,
+            //serve pra nao usar querys fixas e unicas, onde o '?' pode receber qualquer valor.
+            //OBS: Só pode usar a notação '?' nos dados.
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo cpf da pessoa.
+            stmt.setInt(1, p.getCpf());
+
+            //Digo que no 2º '?' ele vai ser trocado pelo rg da pessoa, e assim por diante.
+            stmt.setInt(2, p.getRg());
+            stmt.setInt(3, p.getIdade());
+            stmt.setString(4, p.getNome());
+
+            //Query preparada com os devidos '?' substituidos pelos valores do obj carro, agora eu executo essa Query com o metodo execute().
+            stmt.execute();
+            System.out.println("\nPessoa Adicionada no Banco de Dados\n");
+
+            //Pronto aqui ele já inseriu no banco.
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex);
+        }     
     }
     
 }

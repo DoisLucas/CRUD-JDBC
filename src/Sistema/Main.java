@@ -6,7 +6,9 @@
 package Sistema;
 
 import Beans.Carro;
+import Beans.Pessoa;
 import DAOs.CarroDAO;
+import DAOs.PessoaDAO;
 import java.util.Scanner;
 
 /**
@@ -56,7 +58,7 @@ public class Main {
             case 4:
                 alterar_carro();
             case 5:
-            //add_pessoa();
+                add_pessoa();
             case 6:
             //listar_pessoa();
             case 7:
@@ -91,7 +93,7 @@ public class Main {
         System.out.print("Digite a potencia do carro: ");
         int potencia = getScanner().nextInt();
 
-        //Instanciei um carro, padrão...
+        //Instanciei um carro, normal...
         Carro c = new Carro(chassi, nome, cor, ano, potencia);
 
         //Instanciando a classe DAO do Carro, chamando o metodo add_carro e passando como parametro o carro
@@ -133,10 +135,11 @@ public class Main {
 
     }
 
-    //Tem varias forma de fazer essa alteração, escolhi encontrar o carro  chamando o metodo achar_carro da classe DAO, 
-    //mostrar ele, e dar a liberdade de alterar todas as informações, em seguida passando essas novas informaçoes
-    //pro metodos altera_carro da classe CarroDAO
     public void alterar_carro() {
+        
+        //Tem varias forma de fazer essa alteração, escolhi encontrar o carro  chamando o metodo achar_carro da classe DAO, 
+        //mostrar ele, e dar a liberdade de alterar todas as informações, em seguida passando essas novas informaçoes
+        //pro metodos altera_carro da classe CarroDAO
 
         CarroDAO cdao = new CarroDAO();
 
@@ -165,6 +168,28 @@ public class Main {
 
         //Passando como parametro as informações e o numero do chassi do carro que foi digitado e posteriormente encontrado
         cdao.alterar_carro(c.getNumero_chassi(), nome, cor, ano, potencia);
+        menu();
+    }
+    
+    public void add_pessoa(){
+        
+        System.out.print("\nDigite o nome da Pessoa: ");
+        String nome = getScanner().nextLine();
+        System.out.print("Digite o CPF da Pessoa: ");
+        int cpf = getScanner().nextInt();
+        System.out.print("Digite o RG da Pessoa: ");
+        int rg = getScanner().nextInt();
+        System.out.print("Digite a idade da Pessoa: ");
+        int idade = getScanner().nextInt();
+        
+        //Instanciei um carro, normal...
+        Pessoa p = new Pessoa(cpf, rg, idade, nome);
+        
+         //Instanciando a classe DAO do Carro, chamando o metodo add_carro e passando como parametro o carro
+        //criado acima
+        PessoaDAO pdao = new PessoaDAO();
+        pdao.add_pessoa(p);
+        
         menu();
     }
 

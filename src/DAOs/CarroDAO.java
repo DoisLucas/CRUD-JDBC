@@ -56,7 +56,7 @@ public class CarroDAO {
             stmt.execute();
             System.out.println("\nCarro Adicionado no Banco de Dados\n");
 
-            //Pronto aqui ele já inseriu no banco, WOLFADO PLUS!
+            //Pronto aqui ele já inseriu no banco.
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
         }
@@ -107,6 +107,7 @@ public class CarroDAO {
         return null;
     }
 
+    //Metodo que deleta o carro pelo numero do chassi passado pelo parametro.
     public void delete_carro(int chassi) {
 
         String sql = "DELETE FROM carro WHERE numero_chassi = ?";
@@ -151,7 +152,7 @@ public class CarroDAO {
         }
     }
 
-    //Metodo alterar carro, onde pega as novas informações do parametro e faz o UPDATE na tabela pelo chassi do carro
+    //Metodo alterar carro, onde pega as novas informações do parametro e faz o UPDATE na tabela pelo chassi do carro.
     public void alterar_carro(int chassi, String nome, String cor, int ano, int potencia) {
 
         String sql = "UPDATE carro SET nome = ?, cor = ?, ano = ?, potencia = ? WHERE numero_chassi = ?";
