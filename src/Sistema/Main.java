@@ -7,8 +7,10 @@ package Sistema;
 
 import Beans.Carro;
 import Beans.Pessoa;
+import Beans.Venda;
 import DAOs.CarroDAO;
 import DAOs.PessoaDAO;
+import DAOs.VendaDAO;
 import java.util.Scanner;
 
 /**
@@ -67,7 +69,7 @@ public class Main {
             case 8:
                 alterar_pessoa();
             case 9:
-            //realizar_venda();
+                realizar_venda();
             case 10:
             //mostrar_venda();
             case 11:
@@ -253,6 +255,39 @@ public class Main {
         //Passando como parametro as informações e o numero do chassi do carro que foi digitado e posteriormente encontrado
         pdao.alterar_pessoa(p.getCpf(), nome, idade);
         menu();
+    }
+
+    public void realizar_venda() {
+
+        System.out.print("\nDigite o CPF do comprador: ");
+        int cpf = getScanner().nextInt();
+        System.out.print("Digite o número do chassi do carro: ");
+        int chassi = getScanner().nextInt();
+
+        PessoaDAO pdao = new PessoaDAO();
+        Pessoa p = pdao.achar_pessoa(cpf);
+
+        CarroDAO cdao = new CarroDAO();
+        Carro c = cdao.achar_carro(chassi);
+
+        Venda v = new Venda(p, c);
+
+        System.out.println("\nResumo da Venda: \n");
+        System.out.println("Comprador: " + p.getCpf() + " - " + p.getNome());
+        System.out.println("Carro: " + c.getNumero_chassi() + " - " + c.getNome());
+        System.out.println("Valor: " + c.getValor());
+        System.out.println("Data da venda: " + v.getData_venda());
+        System.out.print("Finalizar venda? 1-(Sim) 0-(Não): ");
+        int escolha = getScanner().nextInt();
+
+        if (escolha == 1) {
+            VendaDAO vdao = new VendaDAO();
+            vdao.add_venda(v);
+            menu();
+        } else {
+            System.out.print("\n");
+            menu();
+        }
     }
 
 }

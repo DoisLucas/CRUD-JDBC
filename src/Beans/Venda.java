@@ -14,16 +14,16 @@ public class Venda {
     private Pessoa p;
     private Carro c;
     private String data_venda;
-    private Float valor;
+    private Double valor;
 
     public Venda() {
     }
 
-    public Venda(Pessoa p, Carro c, String data_venda, Float valor) {
+    public Venda(Pessoa p, Carro c) {
         this.p = p;
         this.c = c;
-        this.data_venda = data_venda;
-        this.valor = valor;
+        this.data_venda = java.time.LocalDate.now().toString();
+        this.valor = c.getValor();
     }
 
     public Pessoa getP() {
@@ -42,11 +42,11 @@ public class Venda {
         this.c = c;
     }
 
-    public Float getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Float valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
