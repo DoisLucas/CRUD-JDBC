@@ -34,7 +34,7 @@ public class CarroDAO {
         //Aqui eu monto a query que vai adicionar o carro, tem que saber o basico de QUERYS SQL, 
         //os nomes da tabela, e os campos tem que estar igual a do banco.
 
-        String sql = "INSERT INTO carro (numero_chassi, nome, cor, ano, potencia) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO carro (numero_chassi, nome, cor, ano, potencia, valor) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -51,6 +51,7 @@ public class CarroDAO {
             stmt.setString(3, c.getCor());
             stmt.setInt(4, c.getAno());
             stmt.setInt(5, c.getPotencia_cv());
+            stmt.setDouble(6, c.getValor());
 
             //Query preparada com os devidos '?' substituidos pelos valores do obj carro, agora eu executo essa Query com o metodo execute().
             stmt.execute();
@@ -92,6 +93,7 @@ public class CarroDAO {
                 c.setCor(rs.getString("cor"));
                 c.setAno(rs.getInt("ano"));
                 c.setPotencia_cv(rs.getInt("potencia"));
+                c.setValor(rs.getDouble("valor"));
                 //Adiciono no ArrayList.
                 retorno.add(c);
                 //Repete esse processo ate acabar o ResultSet, e no final o ARRAY vai ficar cheio com todos os carros.
@@ -143,6 +145,7 @@ public class CarroDAO {
                 c.setCor(rs.getString("cor"));
                 c.setAno(rs.getInt("ano"));
                 c.setPotencia_cv(rs.getInt("potencia"));
+                c.setValor(rs.getDouble("valor"));
             }
             return c;
 
@@ -153,9 +156,9 @@ public class CarroDAO {
     }
 
     //Metodo alterar carro, onde pega as novas informações do parametro e faz o UPDATE na tabela pelo chassi do carro.
-    public void alterar_carro(int chassi, String nome, String cor, int ano, int potencia) {
+    public void alterar_carro(int chassi, String nome, String cor, int ano, int potencia, double valor) {
 
-        String sql = "UPDATE carro SET nome = ?, cor = ?, ano = ?, potencia = ? WHERE numero_chassi = ?";
+        String sql = "UPDATE carro SET nome = ?, cor = ?, ano = ?, potencia = ?, valor = ? WHERE numero_chassi = ?";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -163,7 +166,8 @@ public class CarroDAO {
             stmt.setString(2, cor);
             stmt.setInt(3, ano);
             stmt.setInt(4, potencia);
-            stmt.setInt(5, chassi);
+            stmt.setDouble(5, valor);
+            stmt.setInt(6, chassi);       
             stmt.executeUpdate();
             System.out.println("\nCarro Editado no Banco de Dados\n");
         } catch (SQLException ex) {

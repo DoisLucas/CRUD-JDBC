@@ -20,9 +20,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    
     //TODO: Adicionar atributo valor no Carro, e refatorar os metodos do Carro, Finalizar Venda
-    
     public static void main(String[] args) {
 
         Main m = new Main();
@@ -69,11 +67,11 @@ public class Main {
             case 8:
                 alterar_pessoa();
             case 9:
-                //realizar_venda();
+            //realizar_venda();
             case 10:
-                //mostrar_venda();
+            //mostrar_venda();
             case 11:
-                //listar_carro_pessoa();
+            //listar_carro_pessoa();
             case 12:
                 System.exit(0);
             default:
@@ -94,9 +92,11 @@ public class Main {
         int ano = getScanner().nextInt();
         System.out.print("Digite a potencia do carro: ");
         int potencia = getScanner().nextInt();
+        System.out.print("Digite o valor do carro: ");
+        float valor = getScanner().nextFloat();
 
         //Instanciei um carro, normal...
-        Carro c = new Carro(chassi, nome, cor, ano, potencia);
+        Carro c = new Carro(chassi, nome, cor, ano, potencia, valor);
 
         //Instanciando a classe DAO do Carro, chamando o metodo add_carro e passando como parametro o carro
         //criado acima
@@ -119,7 +119,8 @@ public class Main {
             System.out.println("Nome: " + c.getNome());
             System.out.println("Cor: " + c.getCor());
             System.out.println("Ano: " + c.getAno());
-            System.out.println("Potência (CV): " + c.getPotencia_cv() + "\n");
+            System.out.println("Potência (CV): " + c.getPotencia_cv());
+            System.out.println("Valor do carro: " + c.getValor() + "\n");
         }
         menu();
     }
@@ -154,7 +155,8 @@ public class Main {
         System.out.println("Nome: " + c.getNome());
         System.out.println("Cor: " + c.getCor());
         System.out.println("Ano: " + c.getAno());
-        System.out.println("Potência (CV): " + c.getPotencia_cv() + "\n");
+        System.out.println("Potência (CV): " + c.getPotencia_cv());
+        System.out.println("Valor do carro: " + c.getValor() + "\n");
 
         System.out.println("Digite as novas informações: \n");
 
@@ -166,9 +168,11 @@ public class Main {
         int ano = getScanner().nextInt();
         System.out.print("Potencia (CV): ");
         int potencia = getScanner().nextInt();
+        System.out.print("Valor do carro: ");
+        float valor = getScanner().nextFloat();
 
         //Passando como parametro as informações e o numero do chassi do carro que foi digitado e posteriormente encontrado
-        cdao.alterar_carro(c.getNumero_chassi(), nome, cor, ano, potencia);
+        cdao.alterar_carro(c.getNumero_chassi(), nome, cor, ano, potencia, valor);
         menu();
     }
 
