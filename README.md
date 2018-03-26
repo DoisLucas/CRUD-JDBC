@@ -14,14 +14,14 @@ O projeto consiste na criação de um sistema de venda de carros em Java utiliza
 >- Listagem de todos carros
 >- Excluir carro
 >- Alterar carro
-
+>
 >***Pessoa***
 >- Cadastrar pessoa
 >- Listagem de todas pessoas
 >- Listagem dos carros de um determinada pessoa
 >- Excluir pessoa
 >- Alterar pessoa
-
+>
 >***Venda***
 >- Realizar venda
 >- Listagem de todas vendas
