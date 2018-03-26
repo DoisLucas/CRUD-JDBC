@@ -5,7 +5,6 @@
  */
 package Beans;
 
-//Classe normal, construtor, get e setters, toString.
 /**
  *
  * @author plocabral

@@ -29,13 +29,11 @@ public class VendaDAO {
         String sql = "INSERT INTO venda (id_venda, data_venda, id_pessoa_fk, id_carro_fk) VALUES (DEFAULT, ?, ?, ?)";
 
         try {
-
+            
             PreparedStatement stmt = con.prepareStatement(sql);
-
             stmt.setString(1, v.getData_venda());
             stmt.setInt(2, v.getP().getCpf());
             stmt.setInt(3, v.getC().getNumero_chassi());
-
             stmt.execute();
             System.out.println("\nVenda Adicionada no Banco de Dados\n");
 
@@ -47,18 +45,13 @@ public class VendaDAO {
     //Outra alternativa pra listagem, printar já no metodo, sem retonar uma lista do objeto
     public void mostrar_vendas() {
 
-        ArrayList<Venda> retorno = new ArrayList<>();
-
         String sql = "SELECT v.id_venda, p.cpf || ' - ' || p.nome as COMPRADOR, "
                 + "c.numero_chassi || ' - ' || c.nome as carro, c.valor, v.data_venda  FROM venda as v, "
                 + "pessoa as p, carro as c where p.cpf = v.id_pessoa_fk and c.numero_chassi = v.id_carro_fk";
 
         try {
-
             PreparedStatement stmt = con.prepareStatement(sql);
-
             ResultSet rs = stmt.executeQuery();
-
             System.out.println("\nTodas as Vendas\n");
             
             while (rs.next()) {
@@ -69,9 +62,7 @@ public class VendaDAO {
                 System.out.println("Data da venda: " + rs.getString("data_venda"));
                 System.out.print("\n");
             }
-
             rs.close();
-
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
         }

@@ -70,8 +70,10 @@ public class CarroDAO {
         //ArrayList que irei retornar
         ArrayList<Carro> retorno = new ArrayList<>();
 
-        //Query que irei lançar, padrão.
+        //Query que irei lançar, retorna todos os carros (incluido os já vendidos).
         String sql = "SELECT * FROM carro";
+        //Caso queira mostrar apenas os carros disponivel para venda sem listar os que já foram vendidos.
+        String sql1 = "SELECT * from carro EXCEPT SELECT c.numero_chassi, c.nome, c.cor, c.ano, c.potencia, c.valor FROM carro as c, venda as v where v.id_carro_fk = c.numero_chassi";
 
         try {
 
@@ -167,7 +169,7 @@ public class CarroDAO {
             stmt.setInt(3, ano);
             stmt.setInt(4, potencia);
             stmt.setDouble(5, valor);
-            stmt.setInt(6, chassi);       
+            stmt.setInt(6, chassi);
             stmt.executeUpdate();
             System.out.println("\nCarro Editado no Banco de Dados\n");
         } catch (SQLException ex) {

@@ -5,9 +5,6 @@
  */
 package Beans;
 
-import java.util.ArrayList;
-
-//Classe padrão mensss, construtor, get e setters, toString... Wolfado plus
 /**
  *
  * @author plocabral

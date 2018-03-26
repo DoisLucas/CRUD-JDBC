@@ -22,7 +22,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    //TODO: Adicionar atributo valor no Carro, e refatorar os metodos do Carro, Finalizar Venda
+
     public static void main(String[] args) {
 
         Main m = new Main();
@@ -73,7 +73,7 @@ public class Main {
             case 10:
                 mostrar_vendas();
             case 11:
-            //listar_carro_pessoa();
+                listar_carro_pessoa();
             case 12:
                 System.exit(0);
             default:
@@ -289,10 +289,19 @@ public class Main {
             menu();
         }
     }
-    
-    public void mostrar_vendas(){
+
+    public void mostrar_vendas() {
         VendaDAO vdao = new VendaDAO();
         vdao.mostrar_vendas();
+        menu();
+    }
+
+    public void listar_carro_pessoa() {
+        System.out.print("\nDigite o CPF da pessoa para listar os carros: ");
+        int cpf = getScanner().nextInt();
+
+        PessoaDAO pdao = new PessoaDAO();
+        pdao.mostrar_meus_carros(cpf);
         menu();
     }
 

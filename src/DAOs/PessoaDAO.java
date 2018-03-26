@@ -156,4 +156,25 @@ public class PessoaDAO {
         }
     }
 
+    public void mostrar_meus_carros(int cpf) {
+
+        String sql = "SELECT v.id_venda, p.cpf || ' - ' || p.nome as COMPRADOR, c.numero_chassi || ' - ' || c.nome as carro, c.valor, v.data_venda  FROM venda as v, pessoa as p, carro as c where p.cpf = ? and c.numero_chassi = v.id_carro_fk";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+            System.out.println("\nTodas os carros:\n");
+
+            while (rs.next()) {
+                System.out.println("Carro: " + rs.getString("carro"));
+            }
+            
+            System.out.print("\n");
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex);
+        }
+    }
+
 }
