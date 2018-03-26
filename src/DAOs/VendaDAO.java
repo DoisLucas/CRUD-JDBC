@@ -5,10 +5,13 @@
  */
 package DAOs;
 
+import Beans.Pessoa;
 import Beans.Venda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,6 +38,39 @@ public class VendaDAO {
 
             stmt.execute();
             System.out.println("\nVenda Adicionada no Banco de Dados\n");
+
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex);
+        }
+    }
+
+    //Outra alternativa pra listagem, printar já no metodo, sem retonar uma lista do objeto
+    public void mostrar_vendas() {
+
+        ArrayList<Venda> retorno = new ArrayList<>();
+
+        String sql = "SELECT v.id_venda, p.cpf || ' - ' || p.nome as COMPRADOR, "
+                + "c.numero_chassi || ' - ' || c.nome as carro, c.valor, v.data_venda  FROM venda as v, "
+                + "pessoa as p, carro as c where p.cpf = v.id_pessoa_fk and c.numero_chassi = v.id_carro_fk";
+
+        try {
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+
+            System.out.println("\nTodas as Vendas\n");
+            
+            while (rs.next()) {
+                System.out.println("Numero da venda: " + rs.getInt("id_venda"));
+                System.out.println("Comprador: " + rs.getString("comprador"));
+                System.out.println("Carro: " + rs.getString("carro"));
+                System.out.println("Valor: " + rs.getDouble("valor"));
+                System.out.println("Data da venda: " + rs.getString("data_venda"));
+                System.out.print("\n");
+            }
+
+            rs.close();
 
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);

@@ -14,16 +14,11 @@ public class Venda {
     private Pessoa p;
     private Carro c;
     private String data_venda;
-    private Double valor;
-
-    public Venda() {
-    }
 
     public Venda(Pessoa p, Carro c) {
         this.p = p;
         this.c = c;
         this.data_venda = java.time.LocalDate.now().toString();
-        this.valor = c.getValor();
     }
 
     public Pessoa getP() {
@@ -42,14 +37,6 @@ public class Venda {
         this.c = c;
     }
 
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
     public String getData_venda() {
         return data_venda;
     }
@@ -60,7 +47,7 @@ public class Venda {
 
     @Override
     public String toString() {
-        return "Venda{" + "p=" + p + ", c=" + c + ", data_venda=" + data_venda + ", valor=" + valor + '}';
+        return "Venda{" + "p=" + p + ", c=" + c + ", data_venda=" + data_venda + '}';
     }
 
 }

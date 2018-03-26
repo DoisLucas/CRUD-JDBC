@@ -71,7 +71,7 @@ public class Main {
             case 9:
                 realizar_venda();
             case 10:
-            //mostrar_venda();
+                mostrar_vendas();
             case 11:
             //listar_carro_pessoa();
             case 12:
@@ -288,6 +288,12 @@ public class Main {
             System.out.print("\n");
             menu();
         }
+    }
+    
+    public void mostrar_vendas(){
+        VendaDAO vdao = new VendaDAO();
+        vdao.mostrar_vendas();
+        menu();
     }
 
 }
