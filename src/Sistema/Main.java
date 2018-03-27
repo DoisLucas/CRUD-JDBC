@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author plocabral testando
+ * @author plocabral
  */
 public class Main {
 
