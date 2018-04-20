@@ -79,7 +79,7 @@ CREATE TABLE public.venda
 **OBSERVAÇÃO:**
 
 > O relacionamento entre **CARRO** e **VENDA** passa a ser 1,1 devido a constraint UNIQUE atribuida a chave estrangeira de **CARRO** na tabela **VENDA**, fazendo com que um **CARRO** só possua uma **VENDA**.
-
+>
 > Uma pessoa pode estar em varias venda (pode ter varios carros), porém um determinado carro so pode estar em uma unica venda (só pode ser vendido uma única vez).
 
 >A estrutura do projeto e as credenciais do banco deve ser trocadas de acordo com as suas necessidades, assim como a importação da biblioteca JDBC do banco desejado.
