@@ -56,7 +56,7 @@ CREATE TABLE public.pessoa
 ```SQL
 CREATE TABLE public.venda
 (
-  id_venda integer NOT NULL DEFAULT nextval('venda_id_venda_seq'::regclass),
+  id_venda SERIAL,
   data_venda character varying NOT NULL,
   id_pessoa_fk integer NOT NULL,
   id_carro_fk integer NOT NULL,
