@@ -29,7 +29,7 @@ public class VendaDAO {
         String sql = "INSERT INTO venda (id_venda, data_venda, id_pessoa_fk, id_carro_fk) VALUES (DEFAULT, ?, ?, ?)";
 
         try {
-            
+            con = BancoConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, v.getData_venda());
             stmt.setInt(2, v.getP().getCpf());
@@ -39,6 +39,8 @@ public class VendaDAO {
 
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 
@@ -50,10 +52,11 @@ public class VendaDAO {
                 + "pessoa as p, carro as c where p.cpf = v.id_pessoa_fk and c.numero_chassi = v.id_carro_fk";
 
         try {
+            con = BancoConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             System.out.println("\nTodas as Vendas\n");
-            
+
             while (rs.next()) {
                 System.out.println("Numero da venda: " + rs.getInt("id_venda"));
                 System.out.println("Comprador: " + rs.getString("comprador"));
@@ -65,6 +68,8 @@ public class VendaDAO {
             rs.close();
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 

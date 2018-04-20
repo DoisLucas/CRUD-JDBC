@@ -37,7 +37,7 @@ public class CarroDAO {
         String sql = "INSERT INTO carro (numero_chassi, nome, cor, ano, potencia, valor) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
-
+            con = BancoConnection.getConnection();
             //O preparedStatement serve pra preparar a query que criei acima, subistituindo os '?' pelos valores que eu quero,
             //serve pra nao usar querys fixas e unicas, onde o '?' pode receber qualquer valor.
             //OBS: Só pode usar a notação '?' nos dados.
@@ -60,6 +60,8 @@ public class CarroDAO {
             //Pronto aqui ele já inseriu no banco.
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
+        } finally {
+            BancoConnection.closeConnection(con);
         }
 
     }
@@ -76,7 +78,7 @@ public class CarroDAO {
         String sql1 = "SELECT * from carro EXCEPT SELECT c.numero_chassi, c.nome, c.cor, c.ano, c.potencia, c.valor FROM carro as c, venda as v where v.id_carro_fk = c.numero_chassi";
 
         try {
-
+            con = BancoConnection.getConnection();
             //Passo a Query que vai ser preparada e executada.
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -108,22 +110,27 @@ public class CarroDAO {
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
             return null;
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 
     //Metodo que deleta o carro pelo numero do chassi passado pelo parametro.
     public void delete_carro(int chassi) {
 
-        String sql = "DELETE FROM carro WHERE numero_chassi = ?";
+        String sql1 = "DELETE FROM carro WHERE numero_chassi = ?";
 
         try {
-            PreparedStatement stmt = con.prepareStatement(sql);
+            con = BancoConnection.getConnection();
+            PreparedStatement stmt1 = con.prepareStatement(sql1);
             //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo chassi do carro que recebemos no parametro.
-            stmt.setInt(1, chassi);
-            stmt.executeUpdate();
+            stmt1.setInt(1, chassi);
+            stmt1.executeUpdate();
             System.out.println("\nCarro Deletado do Banco de Dados\n");
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
+        } finally {
+            BancoConnection.closeConnection(con);
         }
 
     }
@@ -135,6 +142,7 @@ public class CarroDAO {
         String sql = "SELECT * FROM carro WHERE numero_chassi = ?";
 
         try {
+            con = BancoConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
             //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo chassi do carro que recebemos no parametro.
             stmt.setInt(1, chassi);
@@ -154,6 +162,8 @@ public class CarroDAO {
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
             return null;
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 
@@ -163,6 +173,7 @@ public class CarroDAO {
         String sql = "UPDATE carro SET nome = ?, cor = ?, ano = ?, potencia = ?, valor = ? WHERE numero_chassi = ?";
 
         try {
+            con = BancoConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, cor);
@@ -174,6 +185,8 @@ public class CarroDAO {
             System.out.println("\nCarro Editado no Banco de Dados\n");
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 

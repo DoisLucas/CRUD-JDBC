@@ -34,6 +34,7 @@ public class PessoaDAO {
         String sql = "INSERT INTO pessoa (cpf, rg, idade, nome) VALUES (?, ?, ?, ?)";
 
         try {
+            con = BancoConnection.getConnection();
             //O preparedStatement serve pra preparar a query que criei acima, subistituindo os '?' pelos valores que eu quero,
             //serve pra nao usar querys fixas e unicas, onde o '?' pode receber qualquer valor.
             //OBS: Só pode usar a notação '?' nos dados.
@@ -54,6 +55,8 @@ public class PessoaDAO {
             //Pronto aqui ele já inseriu no banco.
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 
@@ -66,7 +69,7 @@ public class PessoaDAO {
         String sql = "SELECT * FROM pessoa";
 
         try {
-
+            con = BancoConnection.getConnection();
             //Passo a Query que vai ser preparada e executada.
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -96,6 +99,8 @@ public class PessoaDAO {
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
             return null;
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 
@@ -104,6 +109,7 @@ public class PessoaDAO {
         String sql = "DELETE FROM pessoa WHERE cpf = ?";
 
         try {
+            con = BancoConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
             //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo cpf da pessoa que recebemos no parametro.
             stmt.setInt(1, cpf);
@@ -111,6 +117,8 @@ public class PessoaDAO {
             System.out.println("\nPessoa Deletada do Banco de Dados\n");
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 
@@ -120,6 +128,7 @@ public class PessoaDAO {
         String sql = "SELECT * FROM pessoa WHERE cpf = ?";
 
         try {
+            con = BancoConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
             //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo cpf da pessoa que recebemos no parametro.
             stmt.setInt(1, cpf);
@@ -137,6 +146,8 @@ public class PessoaDAO {
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
             return null;
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 
@@ -145,6 +156,7 @@ public class PessoaDAO {
         String sql = "UPDATE pessoa SET nome = ?, idade = ? WHERE cpf = ?";
 
         try {
+            con = BancoConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setInt(2, idade);
@@ -153,6 +165,8 @@ public class PessoaDAO {
             System.out.println("\nPessoa Editada no Banco de Dados\n");
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 
@@ -161,6 +175,7 @@ public class PessoaDAO {
         String sql = "SELECT v.id_venda, p.cpf || ' - ' || p.nome as COMPRADOR, c.numero_chassi || ' - ' || c.nome as carro, c.valor, v.data_venda  FROM venda as v, pessoa as p, carro as c where p.cpf = ? and c.numero_chassi = v.id_carro_fk";
 
         try {
+            con = BancoConnection.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, cpf);
             ResultSet rs = stmt.executeQuery();
@@ -169,11 +184,13 @@ public class PessoaDAO {
             while (rs.next()) {
                 System.out.println("Carro: " + rs.getString("carro"));
             }
-            
+
             System.out.print("\n");
             rs.close();
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
+        } finally {
+            BancoConnection.closeConnection(con);
         }
     }
 
