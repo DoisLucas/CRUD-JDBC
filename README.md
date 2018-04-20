@@ -2,11 +2,11 @@
 
  **SOBRE:**
  
-O projeto consiste na criação de um sistema de venda de carros em Java utilizando JDBC para fazer a comunicação com o banco de dados PostgreSQL.
+O projeto consiste na criação de um sistema de venda de carros em Java utilizando JDBC para fazer a comunicação com banco de dados SGBD, nesse caso foi utilizado o PostgreSQL.
 
 **CRUD:** (Create, Read, Update e Delete) são as quatro operações básicas utilizadas em bases de dados relacionais (RDBMS) ou em interface para utilizadores para criação, consulta, atualização e destruição de dados. 
 
-**JDBC (Java Database Connectivity):** é um conjunto de classes e interfaces (API) escritas em Java que fazem o envio de instruções SQL para qualquer banco de dados relacional
+**JDBC (Java Database Connectivity):** é um conjunto de classes e interfaces (API) escritas em Java que fazem o envio de instruções SQL para qualquer banco de dados relacional como: MySQL, PostgreSQL, SQL Server, Oracle, DB2 IBM dentre outros.
 
 **FUNCIONALIDADES:**
 >***Carro***
