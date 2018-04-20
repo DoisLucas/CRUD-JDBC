@@ -117,11 +117,19 @@ public class CarroDAO {
 
     //Metodo que deleta o carro pelo numero do chassi passado pelo parametro.
     public void delete_carro(int chassi) {
-
+     
         String sql1 = "DELETE FROM carro WHERE numero_chassi = ?";
+        String sql2 = "DELETE FROM venda WHERE id_carro_fk = ?";
 
         try {
             con = BancoConnection.getConnection();
+            //Removendo todas as vendas do carro
+            PreparedStatement stmt2 = con.prepareStatement(sql2);
+            //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo chassi do carro que recebemos no parametro.
+            stmt2.setInt(1, chassi);
+            stmt2.executeUpdate();
+
+            //Excluindo realmete o carro
             PreparedStatement stmt1 = con.prepareStatement(sql1);
             //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo chassi do carro que recebemos no parametro.
             stmt1.setInt(1, chassi);
