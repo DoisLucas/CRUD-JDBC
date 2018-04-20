@@ -106,10 +106,21 @@ public class PessoaDAO {
 
     public void delete_pessoa(int cpf) {
 
+        //Pra deletar a pessoa é necessario deletar todas as vendas que essa pessoa está
+        //relacionada.
+        String sql0 = "DELETE FROM venda WHERE id_pessoa_fk = ?";
         String sql = "DELETE FROM pessoa WHERE cpf = ?";
 
         try {
             con = BancoConnection.getConnection();
+
+            //Removendo as vendas dessa pessoa
+            PreparedStatement stmt1 = con.prepareStatement(sql0);
+            //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo cpf da pessoa que recebemos no parametro.
+            stmt1.setInt(1, cpf);
+            stmt1.executeUpdate();
+
+            //Removendo realmente a pessoa
             PreparedStatement stmt = con.prepareStatement(sql);
             //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo cpf da pessoa que recebemos no parametro.
             stmt.setInt(1, cpf);
