@@ -189,11 +189,11 @@ public class Main {
         System.out.print("Digite a idade da Pessoa: ");
         int idade = getScanner().nextInt();
 
-        //Instanciei um carro, normal...
+        //Instanciei uma pessoa, normal...
         Pessoa p = new Pessoa(cpf, rg, idade, nome);
 
-        //Instanciando a classe DAO do Carro, chamando o metodo add_carro e passando como parametro o carro
-        //criado acima
+        //Instanciando a classe DAO da Pessoa, chamando o metodo add_pessoa e passando como parametro a pessoa
+        //criada acima
         PessoaDAO pdao = new PessoaDAO();
         pdao.add_pessoa(p);
 
@@ -207,7 +207,7 @@ public class Main {
 
         System.out.println("\t\n--- Todas as Pessoas ---\n");
 
-        //Passando um for no arraylist que o metodo mostrar_carros retorna
+        //Passando um for no arraylist que o metodo mostrar_pessoas retorna
         for (Pessoa p : pdao.mostrar_pessoas()) {
             System.out.println("Nome: " + p.getNome());
             System.out.println("CPF: " + p.getCpf());
@@ -252,7 +252,7 @@ public class Main {
         System.out.print("Idade: ");
         int idade = getScanner().nextInt();
 
-        //Passando como parametro as informações e o numero do chassi do carro que foi digitado e posteriormente encontrado
+        //Passando como parametro as informações e o CPF da pessoa que foi digitado e posteriormente encontrado
         pdao.alterar_pessoa(p.getCpf(), nome, idade);
         menu();
     }
