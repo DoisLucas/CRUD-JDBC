@@ -8,24 +8,11 @@ O projeto consiste na criação de um sistema de venda de carros em Java utiliza
 
 **JDBC (Java Database Connectivity):** é um conjunto de classes e interfaces (API) escritas em Java que fazem o envio de instruções SQL para qualquer banco de dados relacional, como: MySQL, PostgreSQL, SQL Server, Oracle, DB2 IBM dentre outros.
 
-**FUNCIONALIDADES:**
->***Carro***
->- Cadastrar carro
->- Listagem de todos carros
->- Excluir carro
->- Alterar carro
->
->***Pessoa***
->- Cadastrar pessoa
->- Listagem de todas pessoas
->- Listagem dos carros de um determinada pessoa
->- Excluir pessoa
->- Alterar pessoa
->
->***Venda***
->- Realizar venda
->- Listagem de todas vendas
+<p align="center">
 
+<img src="https://github.com/DoisLucas/CRUD-JDBC/blob/master/images/Java_jdbc.png" width="50%" height="50%"/>
+
+</p>
 
 **TABELAS SQL:**
 
